@@ -2,21 +2,42 @@
 
 Windows 离线像素绘图与二维骨骼动画编辑器。界面参考 Adobe 创作工具的深灰工作区、工具属性栏、文档标签、可调整面板及时间轴布局。
 
-当前版本 **0.3.5 内部试用版**，包含可选三维转精灵工作区、模型基础编辑、圆盘选色器、色板管理及图层 / 骨骼 / 时间轴右键菜单。支持 GLB／FBX、PMX 2.0／VMD、基础表情与 XYZ 变换；工程嵌入源素材，关闭统一使用深色保存确认。保留 IK、逐帧编辑及 Steam 分发准备。
+当前版本 **0.3.6 内部试用版**，新增项目首页、最近工程缩略图、会话保留和基础 PSD 分层导入。保留像素绘画、二维骨骼／IK、逐帧修整、三维转精灵、模型编辑、选色器、色板及右键菜单。运行时离线，无需账户。
 
-这是 v0.3.5 的软件分发仓库，仅保留 README 和 Windows 软件包。问题反馈可提交到 [GitHub Issues](https://github.com/ChariskQAQ/PixelRigStudio/issues)，请附版本、操作步骤、预期与实际结果及截图。
+这是 v0.3.6 的软件分发仓库，仅保留 README 和 Windows 软件包。问题反馈可提交到 [GitHub Issues](https://github.com/ChariskQAQ/PixelRigStudio/issues)，请附版本、操作步骤、预期与实际结果及截图。
 
 ## 启动
 
-[下载 v0.3.5 Windows x64 软件包](https://github.com/ChariskQAQ/PixelRigStudio/releases/download/v0.3.5/PixelRigStudio-v0.3.5-Windows-x64.zip) · [版本发布页](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v0.3.5)
+[下载 v0.3.6 Windows x64 软件包](https://github.com/ChariskQAQ/PixelRigStudio/releases/download/v0.3.6/PixelRigStudio-v0.3.6-Windows-x64.zip) · [版本发布页](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v0.3.6)
 
-1. 下载 `PixelRigStudio-v0.3.5-Windows-x64.zip`。
+1. 下载 `PixelRigStudio-v0.3.6-Windows-x64.zip`。
 2. 完整解压，在版本文件夹中运行 `PixelRigStudio.exe`。
 3. 保留同目录的 DLL、resources、locales 等配套文件，无需安装 Node.js 或 Blender。运行时完全离线。
 
+## v0.3.6 更新与首页
+
+- 启动进入项目首页：新建、打开、导入 PSD、打开示例。新建支持 32、64、128、256px 预设。
+- 最近工程最多 20 条，显示首帧缩略图、名称与路径，可搜索、重新定位文件或移除记录；移除记录不删除文件。
+- 编辑器返回首页后，工程、撤销记录、当前帧和视图保留，点击“继续编辑”恢复工作。返回首页暂停播放，取消未完成的拖拽和生成。
+- 打开其他工程、新建、导入 PSD、加载示例和关闭工程统一处理保存／不保存／取消；取消文件选择、解析失败或保存失败保留原会话。
+- 恢复副本提供恢复、稍后处理和确认丢弃。待处理副本不会因首页退出而误删；已经结束的会话不能用延迟自动保存覆盖新会话。
+
+### PSD 导入
+
+1. 在首页点击“导入 PSD”，或在编辑器“文件”菜单选择“导入 PSD…”。
+2. 先查看兼容报告。基础像素图层可分层导入；复杂文件只能使用已保存的真实合成图，或取消。
+3. 分层结果保留名称、顺序、基础分组、位置、可见性、透明度与普通锁定状态；导入后可绘画，也可手动绑定骨骼。不会自动识别身体部件。
+4. 导入结果标记为未保存，首次保存需选择新的 .pxrig 路径。原 PSD 始终保持不变。
+
+首版仅支持 **RGB、每通道 8 位、最大 512×512、最多 150 个图层与组**；PSD 文件最大 32MiB，预计解码像素数据最大 64MiB。画布外图层内容按画布裁切并报告，空图层保留结构。
+
+**不是完整 Photoshop 兼容。** 蒙版、特殊混合、调整图层、图层样式、文字、矢量、智能对象及复杂分组合成会禁用分层导入。合成图模式只生成一个图层，无法分别绑定部件；没有可用合成图时，需在 Photoshop 中保存包含合成图的文件，或先导出 PNG。
+
+不支持 PSB、CMYK、索引色、16／32 位文档、PSD 回写或 ICC 色彩转换。自动化已覆盖已知 RGBA 的测试素材；真实 Photoshop 文件与 Photoshop 导出 PNG 的视觉对照仍需补充。
+
 ## 制作流程
 
-1. 启动时加载原创「巡游者」示例，包含 12 个像素部件、13 根骨骼和 12 帧动画。
+1. 启动后进入项目首页，选择新建／打开／导入 PSD，或主动打开原创「巡游者」示例（12 个部件、13 根骨骼、12 帧动画）。
 2. 在「绘制部件」模式修改源像素；也可新建透明工程，每个部件独占一个图层。
 3. 在「骨骼」菜单创建自定义骨骼或人形模板。选中普通像素图层，使用「图层 → 绑定到骨骼」。
 4. 切换到「摆姿势」，用 R 旋转骨骼，或选前臂、小腿后用 K 拖动 IK 末端。拖动自动记录当前帧姿势；Esc 取消。根节点拖动控制整体位移。
@@ -70,6 +91,6 @@ Windows 离线像素绘图与二维骨骼动画编辑器。界面参考 Adobe �
 
 ## 软件包校验
 
-`PixelRigStudio-v0.3.5-Windows-x64.zip` 的 SHA-256：
+`PixelRigStudio-v0.3.6-Windows-x64.zip` 的 SHA-256：
 
-`79435074e6310ac05ff4dc481ea283c4fbb246446c386cb977c6b318b2c4a13c`
+`4ab271a0d8274035ad13d1775275f5fee4cde5b4e6153283c7b76977c8b87cc9`
