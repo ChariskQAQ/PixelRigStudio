@@ -1,5 +1,7 @@
 # Pixel Rig Studio
 
+简体中文 | [English](README.en.md)
+
 Windows 离线像素绘画与动画制作工具。可以直接逐帧画，也可以将角色部件绑定到二维骨骼，先摆姿势，再生成像素帧修整；场景工作区可以把背景、角色动作与道具编排成像素短片。
 
 当前版本：**v0.4.8 试用版**。适用 **Windows x64**，运行无需 Node.js、Blender、账户或联网。视频编码器建议在 Windows 10 22H2／Windows 11 上使用。
