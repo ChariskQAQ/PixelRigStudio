@@ -4,43 +4,38 @@
 
 An offline pixel drawing and animation tool for Windows. Draw frame by frame, bind character parts to 2D bones, pose them, and bake the result into editable pixel frames. The scene workspace lets you arrange backgrounds, character animations, and props into short pixel films.
 
-Current release: **v0.4.8 Preview**, for **Windows x64**. Running the application does not require Node.js, Blender, an account, or an internet connection. Windows 10 22H2 or Windows 11 is recommended for video encoding.
+Current release: **v0.4.10 Preview**, for **Windows x64**. Running the application does not require Node.js, Blender, an account, or an internet connection. Windows 10 22H2 or Windows 11 is recommended for video encoding.
 
-**The application interface and the detailed guides bundled with v0.4.8 are in Simplified Chinese.** This README explains the workflow in English and includes key Chinese interface labels so you can find the controls.
+**The application interface and the detailed guides bundled with v0.4.10 are in Simplified Chinese.** This README explains the workflow in English and includes key Chinese interface labels so you can find the controls.
 
 ## Download and run
 
-**[Download v0.4.8 for Windows x64](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v0.4.8)**
+**[Download v0.4.10 for Windows x64](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v0.4.10)**
 
-1. Download `PixelRigStudio-v0.4.8-Windows-x64.zip` from the release assets.
+1. Download `PixelRigStudio-v0.4.10-Windows-x64.zip` from the release assets.
 2. Extract the entire archive to a writable folder.
 3. Run `PixelRigStudio.exe` inside that folder.
 4. Keep the DLLs, `resources`, `locales`, and other accompanying files. Copying only the EXE will not work.
 
-The main archive already includes both optional plugins and offline documentation. You do not need to download the plugins again. Separate plugin ZIPs are available on the release page for individual updates. Use `SHA256SUMS-v0.4.8.txt` to verify the main archive and plugin downloads.
+The main archive already includes both optional plugins and offline documentation. You do not need to download the plugins again. Separate plugin ZIPs are available on the release page for individual updates. Use `SHA256SUMS-v0.4.10.txt` to verify the main archive and plugin downloads.
 
 This is a preview release and the executable is not code-signed. Start with an example and keep backups of important projects. If Windows displays an unknown-publisher warning, check the download source and checksum first.
 
 This public repository distributes release packages and documentation. **The application's source code is not published here.** Older versions are available under [Releases](https://github.com/ChariskQAQ/PixelRigStudio/releases).
 
-## What's new in 0.4.8
+## What's new in 0.4.10
 
-- **Video frame extraction in the scene workspace:** choose a local video, a time range, a sampling rate, and an output pixel size to create a reusable animation asset. Imports and shared-asset updates support undo. Cancellation or failure leaves no partial result. Extracted pixels are embedded in the project, so playback and export still work after the source video is moved.
-- **Physics and PMX plugins 1.2.2:** compatible with application versions **0.4.2–0.4.8**. Enable them and restart the application. Plugin version 1.2.1 supports only up to 0.4.3 and must be replaced when upgrading; project parameters and retouched pixels are preserved.
-- **Project compatibility:** character format 3, scene format 4, and plugin API 1 are unchanged. Development checks now have a unified static-check entry point and a Windows regression runner. The release was validated with package-specific workflows; the entire desktop regression suite was not rerun for this package.
+- **Track-based timelines:** character tracks group bone animation and layers/parts; scene objects show clips and transform keys on separate, collapsible rows. Diamonds mark keys; a horizontal span connects a linear key to the next key. Hold keys have no span. Seconds, a blue playhead, character-track zoom, and synchronized label/content scrolling make timing easier to read.
+- **Unified object tree:** manage layers, groups, image parts, and bones together, with expansion, context menus, and drag-to-rebind. Layer drawing order is still maintained separately. Bones use a diamond-shaped display.
+- **Adjustable workspace:** move, dock, float, and resize panels by their edges. Layouts are remembered locally and can be reset.
+- **Current-frame free transform:** Ctrl+T transforms a selection or the whole visible Cel on an ordinary pixel layer. Position, scale, rotation, and shear can be entered precisely; apply is one undo step and Esc cancels. This pixel tool does not edit bound source parts.
+- **Base bone-length scaling:** adjust character proportions in source-part mode and optionally stretch attached parts across the animation. Source bitmaps and existing retouched frames remain intact. Rebake to generate pixels at the new proportions; this is not per-frame bone-length animation.
+- **Smaller distribution:** keep required runtime assets, Simplified Chinese/Traditional Chinese/English runtime locale files, the offline encoder, licenses, and third-party source materials. The ZIP is about 211.5 MiB; the extracted directory is about 470 MiB. Runtime locale files do not add an English application interface.
+- **Updated optional plugins:** physics **1.2.5** and PMX/VMD **1.2.4**, compatible with application versions **0.4.2–0.4.10**, with API 1 unchanged. They are included but not installed or enabled by default. Replace older plugins whose compatibility range excludes this release.
 
-## Character and scene editing features
+Bone animation still stores whole poses; scene objects still store combined transform keys. The new rows do not introduce independent per-bone or per-property tracks, or automatically draw in-between pixel images.
 
-- Four stick-figure examples: a character animation, a binding-and-wave exercise, a scene, and a physics example. The character has 12 separate parts, 13 bones, and a 12-frame walking animation. Older character and standalone 3D demo projects are no longer included in this package.
-- The binding exercise starts with an unbound forearm. Layer properties provide bind, locate, and unbind actions, with linked parts and bones highlighted together.
-- The canvas shows the current mode and editing scope. Frame retouching helps avoid accidentally painting on source parts. Numeric changes preview immediately, commit once with Enter or loss of focus, and cancel with Esc.
-- Configurable onion skinning: 0–4 frames on either side and adjustable opacity. Jump between key poses or loop a selected frame range.
-- Undoable canvas resizing. PNG images larger than the current canvas show a preview with options to enlarge the canvas, crop, or cancel.
-- Panel sizes are remembered, and the navigator can be collapsed. Pose mode folds away the color area; resizing panels preserves manually chosen zoom.
-- Moving a scene clip carries its object keyframes by default. This can be disabled. Movement stops at the timeline boundary without dropping keys; trimming changes only the visible range.
-- Export dialogs summarize the range, size, duration, transparency, and audio. Successful exports remember settings and offer an action to open the output location.
-
-Source assets, previous bake results, and manual retouches are preserved. On October 11, 2026, the release passed 155 core tests, standalone EXE checks for saving, frame extraction, scene output, and plugins, plus a full file comparison after ZIP extraction and startup from a Chinese-language path.
+Video frame extraction, PSD import, FK/IK, adjustable onion skinning, scene audio, film export, and the four stick-figure examples remain available. Validation included 188 core tests, an independently extracted executable, timeline checks at three simulated display scales, plugin restart workflows, and an actual MP4 export with audio. The full 29-group desktop suite and native multi-monitor DPI were not rerun for this release.
 
 ## Getting started
 
@@ -98,13 +93,13 @@ Enabling and disabling take effect at the next startup. Collapsing the sidebar d
 
 Plugin packages are executable local code and are not fully sandboxed. Install only trusted plugins. Uninstalling a plugin preserves project parameters, source assets, and generated pixels.
 
-### 2D physics: `pixel-rig-physics-1.2.2.zip`
+### 2D physics: `pixel-rig-physics-1.2.5.zip`
 
 Select a bound part, then open the **Physics** (`物理`) sidebar to configure relative mass, gravity, elastic following, damping, physics weight, connections, and simplified collision shapes. Try the ears-and-accessory example from **Tools → Part Simulation Plugin Example** (`工具 → 部件模拟插件示例…`).
 
 Physics keeps each bitmap's shape and changes its position and angle. **It does not provide squash-and-stretch, soft bodies, or cloth.** Simplified circle and rectangle collisions do not guarantee that fast-moving objects will never pass through each other.
 
-### PMX / VMD: `pixel-rig-pmx-1.2.2.zip`
+### PMX / VMD: `pixel-rig-pmx-1.2.4.zip`
 
 Use the right-hand **PMX** tab to enter the 3D workspace, then open the workspace's PMX sidebar. Import a model and adjust its size, XYZ transforms, VMD animation, supported expressions, materials, camera, and pixel output.
 
@@ -125,7 +120,7 @@ GLB and FBX work without a plugin or a Blender installation. VMD applies only to
 - `Ctrl+S` saves; `Ctrl+Shift+S` saves a copy. Saving keeps the previous file as a `.bak` backup.
 - Changed projects are autosaved to a recovery copy every 60 seconds. Recovery options appear on the home screen after restarting.
 - If saving is cancelled, fails, or the project changes during a save-and-close operation, the project stays open.
-- Character projects use format 3; scenes use format 4. Older character formats 1, 2, and 3 can be opened. The first save after upgrading an older character format defaults to a separate copy. Older application versions cannot open newer formats.
+- Ordinary character projects use format 3; scenes use format 4. Characters using bone-length scaling or related part-follow settings use format 5. Character formats 1, 2, 3, and 5 can be opened. The first save after upgrading an older character format defaults to a separate copy. Older application versions cannot open newer formats.
 - Character projects support canvases up to 512×512, 500 frames, 150 layers and groups, and 256 2D bones.
 - Project ZIP files are limited to 128 MiB. Character part images and all Cels together have a 128 MiB decoded RGBA budget; repeated references are counted separately. Scene shared-pixel resources also have a 128 MiB decoded budget.
 - These are resource limits, not performance guarantees at maximum capacity. Start with small examples.
@@ -136,6 +131,7 @@ GLB and FBX work without a plugin or a Blender installation. VMD applies only to
 | -------------------------------------------- | --------------------------------- |
 | Pencil / Eraser / Fill / Eyedropper          | B / E / G / I                     |
 | Rectangular selection / Move                 | M / V                             |
+| Current-frame pixel free transform | Ctrl+T |
 | Bone tool / Two-bone IK / Binding adjustment | R / K / P                         |
 | Pan / Zoom                                   | Space + drag / Ctrl + mouse wheel |
 | Save / Save As                               | Ctrl+S / Ctrl+Shift+S             |
@@ -154,6 +150,8 @@ The package's **`说明`** directory, meaning "Documentation," contains the foll
 - `plugin-guide.zh-CN.md`: installation, updates, sidebars, and compatibility.
 - `physics-guide.zh-CN.md`: 2D simulation parameters and limitations.
 - `pixel-brush-guide.zh-CN.md`: brushes and presets.
+- `timeline-tracks-update.md`: the new timeline and screenshots.
+- `release-notes-v0.4.10.md`: changes and compatibility.
 - `plugin-api-v1.md`: the developer interface.
 
 [Report an issue on GitHub](https://github.com/ChariskQAQ/PixelRigStudio/issues) with your application and plugin versions, steps to reproduce, expected behavior, and actual result. Screenshots help. Back up your project before troubleshooting; do not upload private files or models you do not have permission to share.
