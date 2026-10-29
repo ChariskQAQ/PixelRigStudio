@@ -4,13 +4,13 @@ English | [简体中文](README.md)
 
 An offline pixel drawing and animation tool for Windows. Draw frame by frame, bind character parts to 2D bones, pose them, and bake editable pixel frames. Arrange backgrounds, character clips, and props into short pixel films in the scene workspace.
 
-Current release: **v5.11.2 Preview · Windows x64**. **The application interface and bundled detailed guides are in Simplified Chinese.**
+Current release: **v0.5.2 Preview · Windows x64**. **The application interface and bundled detailed guides are in Simplified Chinese.**
 
-**[Download v5.11.2](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v5.11.2)** · [Older releases](https://github.com/ChariskQAQ/PixelRigStudio/releases) · [Report an issue](https://github.com/ChariskQAQ/PixelRigStudio/issues)
+**[Download v0.5.2](https://github.com/ChariskQAQ/PixelRigStudio/releases/tag/v0.5.2)** · [Older releases](https://github.com/ChariskQAQ/PixelRigStudio/releases) · [Report an issue](https://github.com/ChariskQAQ/PixelRigStudio/issues)
 
 The project is still being refined. Start with an example and keep backups of important work. Bones help arrange motion, but rotated pixel outlines and joints still need manual inspection and retouching.
 
-## What's new in 5.11.2
+## What's new in 0.5.2
 
 Import `.aseprite` / `.ase` files from Home and the File menu, preserving basic pixel layers and groups, layer properties, animation frames, durations, and tag names/ranges. Indexed/grayscale pixels become RGBA and linked Cels become independent editable images. Unsupported rendering features are reported and block inaccurate imports. Save the result as `.pxrig`; the source file is never overwritten.
 
@@ -25,16 +25,16 @@ Repeated workspace labels and permanent tutorial text have been reduced. Editing
 - **Configurable undo:** **Edit → Undo Steps** (`编辑 → 撤销步数…`) supports 20–500 steps, default 80, with a separate 256 MB pixel-history budget.
 - **Plugin and code organization updates:** compatibility checks use API and declared app-version ranges. The editors are split into panels, commands, and interaction logic. Project formats are unchanged.
 
-Full notes for this build are bundled as `说明/release-notes-v5.11.2.md`.
+Full notes for this build are bundled as `说明/release-notes-v0.5.2.md`.
 
 ## Download and run
 
-1. Download `PixelRigStudio-v5.11.2-Windows-x64.zip` from the release's Assets section.
+1. Download `PixelRigStudio-v0.5.2-Windows-x64.zip` from the release's Assets section.
 2. Extract the **entire** archive to a writable folder and run `PixelRigStudio.exe`.
 3. Keep all accompanying DLLs, `resources`, `locales`, and other files. Copying only the EXE will not work.
 4. Node.js, Blender, an account, and an internet connection are not required. Windows 10 22H2 or Windows 11 is recommended for video encoding.
 
-The main ZIP includes the offline encoder, four examples, Chinese guides, and both optional plugins. Separate plugin ZIPs are for updates. Verify the app archive, plugins and both READMEs using the release's `SHA256SUMS-v5.11.2.txt`.
+The main ZIP includes the offline encoder, four examples, Chinese guides, and both optional plugins. Separate plugin ZIPs are for updates. Verify the app archive, plugins and both READMEs using the release's `SHA256SUMS-v0.5.2.txt`.
 
 The executable is not code-signed and there is no automatic updater. This public repository distributes packages and documentation; **the application's source code is not published here**.
 
@@ -75,7 +75,7 @@ Both ZIPs are included in the app's `可选插件` (Optional Plugins) folder, an
 
 Open **Plugin Manager** (`插件管理…`) from home or Tools, select **Install Local Plugin** (`安装本地插件…`), choose the ZIP without extracting it, enable it, save and restart. Use the **Physics** (`物理`) or **PMX** sidebar tab. Both can be enabled together.
 
-These versions use API 1 and declare compatibility with app versions 0.4.2–5.11.2. Older physics 1.2.6 and PMX 1.2.5 stop at 0.99.99 and cannot run on this build: disable, restart, uninstall, install the bundled replacement, enable, and restart. Uninstalling preserves project settings and generated pixels.
+These API 1 plugins support app version 0.5.2. Existing physics 1.2.6 / PMX 1.2.5 installations also remain compatible. Older plugins capped at app version 0.4.10 require an update: disable, restart, uninstall, install the bundled replacement, enable and restart. Uninstalling preserves project settings and generated pixels.
 
 Plugins execute local code; install only trusted packages. Blender Python add-ons are not compatible. The 2D physics plugin does not add 3D physics to PMX.
 
